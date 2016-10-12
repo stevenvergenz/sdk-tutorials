@@ -1,0 +1,16 @@
+Phase 1: Loading apps
+	- lots of screenshots/videos of enclosures
+	- explain what enclosures/screens are
+	- explain what the different buttons do
+	- private browser and cast
+	- link to example app index
+	
+Phase 2: Developing with A-Frame
+	1. Explain dependency/similarity to HTML. Link to external HTML tutorial, 
+		A-Frame documentation for experienced devs
+	2. Get started with boilerplate
+	3. Explain altspace component
+	3. Explain entities/components in general
+	4. List most important components: position, rotation, scale, color, material
+	5. Explain primitives vs entities/components
+	6. List most important primitives: box, sphere, plane, sky
