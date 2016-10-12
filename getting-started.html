@@ -8,7 +8,7 @@
 				padding: 0;
 				height: 100%;
 				background-color: whitesmoke;
-				
+
 				font-family: 'Helvetica Neue', arial, sans-serif;
 				line-height: 1.5em;
 			}
@@ -20,22 +20,25 @@
 				padding: 10px;
 				box-sizing: border-box;
 			}
-			
+
+			figure {
+				max-width: 100%;
+			}
 			img, video {
-				margin: 15px auto;
+				max-width: 100%;
 			}
 		</style>
 	</head>
 	<body>
 		<div id='container'>
-		
+
 			<h1>Loading Apps Into AltspaceVR</h1>
-			
+
 			<figure>
 				<video src='assets/load app.mp4' autoplay loop></video>
 				<figcaption>TL;DR</figcaption>
 			</figure>
-			
+
 			<p>
 				Altspace is a fun and interesting place to spend your time,
 				due in no small part to the wonderful variety of content that
@@ -45,28 +48,51 @@
 				your events, and explains the available options on those app
 				containers.
 			</p>
-		
-			
+
 			<h2>Enclosures and Displays</h2>
-			
+
 			<p>
 				Altspace rooms typically have one or more spaces designated for apps.
 				These are called <em>enclosures</em> in general, or <em>displays</em>
 				when they're flat.
 			</p>
-			
+
 			<figure>
 				<img src='assets/enclosure.gif'/>
-				<figcaption>How to recognize an enclosure</figcaption>
+				<figcaption>
+					How to recognize an enclosure. Displays do not have corner markers.
+				</figcaption>
 			</figure>
-			
+
 			<p>
 				Think of enclosures as web browsers that can take up space. When you
 				type a regular website into an enclosure (like
 				<a href='https://altvr.com'>AltVR.com</a>), and it appears just as
-				you'd expect. But type in the URL for an Altspace-enabled website,
-				and it will display in 3d
+				you'd expect. But type in the URL for an Altspace-enabled website
+				(a.k.a. an app), and it will display in 3d. Depending on the app,
+				you may even be able to interact with it, or with the other players.
+				Try different apps, and see which you like best.
 			</p>
+			
+			<h2>Enclosure Controls</h2>
+			
+			<p>
+				Enclosures have the same basic controls as the standard web browser,
+				and one extra:
+			</p>
+			
+			<ul>
+				<li>
+					<img src='assets/close-icon.png' style='height: 1em; position: relative; top: 2px;' />
+					Close - Clear the enclosure of any running app</li>
+				<li>&#9664; Back - Go to the previous page</li>
+				<li>&#9654; Forward - Go to the next page</li>
+				<li>&#10226; Refresh - Reload the current page</li>
+				<li>&#128269; Search - Search Google for the entered text</li>
+				<li>&#10006; Clear - Clear the contents of the URL bar</li>
+				<li>&#127968; Home - Go to the default page for this enclosure</li>
+			</ul>
+			
 		</div>
 	</body>
 </html>
