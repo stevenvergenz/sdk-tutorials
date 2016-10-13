@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>How To Build Apps With A-Frame - AltspaceVR</title>
+		<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+		<script src="https://cdn.rawgit.com/AltspaceVR/aframe-altspace-component/v0.3.0/dist/aframe-altspace-component.min.js"></script>
+
+		<link rel='stylesheet' href='lib/prism.css'/>
+		<style>
+			html, body {
+				margin: 0;
+				padding: 0;
+				height: 100%;
+				background-color: whitesmoke;
+
+				font-family: 'Helvetica Neue', arial, sans-serif;
+				line-height: 1.5em;
+			}
+			#container {
+				width: 1000px;
+				min-height: 100%;
+				background-color: white;
+				margin: 0 auto;
+				padding: 10px;
+				box-sizing: border-box;
+			}
+
+			figure {
+				max-width: 100%;
+			}
+			img, video {
+				max-width: 100%;
+			}
+			img.icon {
+				height: 1em;
+				position: relative;
+				top: 2px;
+			}
+			a-scene {
+				border: solid black 1px;
+				width: 600px;
+				height: 450px;
+			}
+		</style>
+
+	</head>
+	<body>
+		<div id='container'>
+
+			<h1>How To Build Apps With A-Frame</h1>
+
+			<p>
+				When it comes to building something quick in Altspace, it's hard
+				to beat <a target='_blank' href='https://aframe.io/'>A-Frame</a>.
+				It has a simple HTML-based syntax, so anyone with even a passing
+				familiarity with web development will pick it up in no time. If
+				that's not you, you should go through MDN's terrific
+				<a href='https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Introduction'
+					target='_blank'>Introduction to HTML</a> before you continue.
+			</p>
+
+			<p>
+				On the other hand, the world is full of web developers. If you're
+				one of these, and feel comfortable experimenting without this
+				tutorial holding your hand, you should jump right in with the
+				<a href='https://aframe.io/docs/0.3.0/introduction/' target='_blank'>
+				A-Frame Documentation</a>. You just need to add the Altspace
+				component to your <code>&lt;a-scene&gt;</code> tag. Keep in mind
+				though that development in Altspace has a few
+				<a href='https://github.com/altspacevr/altspacesdk#threejs-feature-support'>
+				caveats</a>.
+			</p>
+
+			<h2>What is A-Frame?</h2>
+
+			<p>
+				A-Frame is a relatively easy way to build a 3d scene without
+				a lot of complicated coding. It's nearly as simple as adding
+				an object, then telling it where it should be in the space.
+				We'll dig through this example line-by-line in a moment, but
+				first, take a look at the demo below:
+			</p>
+
+			<a-scene altspace='vertical-align: bottom;' embedded>
+				<a-sphere position='0 1.5 0' material='shader: flat; src: url(assets/moon.jpg);'>
+					<a-animation to='0 360 0' easing='linear' dur='20000' repeat='indefinite'/>
+				</a-sphere>
+				<a-entity position='0 0 2'>
+					<a-camera></a-camera>
+				</a-entity>
+			</a-scene>
+
+			<p>This demo was constructed with only eight lines of pseudo-HTML:</p>
+
+			<pre><code class='language-markup'><!--
+-->&lt;a-scene altspace='vertical-align: bottom;' embedded&gt;
+	&lt;a-sphere position='0 1.5 0' material='shader: flat; src: url(assets/moon.jpg);'&gt;
+		&lt;a-animation to='0 360 0' easing='linear' dur='20000' repeat='indefinite'/&gt;
+	&lt;/a-sphere&gt;
+	&lt;a-entity position='0 0 2'&gt;
+		&lt;a-camera&gt;&lt;/a-camera&gt;
+	&lt;/a-entity&gt;
+&lt;/a-scene&gt;<!--
+			--></code></pre>
+		</div>
+
+		<script src="lib/prism.js"></script>
+	</body>
+</html>
