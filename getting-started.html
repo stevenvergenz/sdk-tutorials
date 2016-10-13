@@ -27,6 +27,11 @@
 			img, video {
 				max-width: 100%;
 			}
+			img.icon {
+				height: 1em;
+				position: relative;
+				top: 2px;
+			}
 		</style>
 	</head>
 	<body>
@@ -78,20 +83,36 @@
 			
 			<p>
 				Enclosures have the same basic controls as the standard web browser,
-				and one extra:
+				plus a couple enclosure-specific ones:
 			</p>
 			
 			<ul>
 				<li>
-					<img src='assets/close-icon.png' style='height: 1em; position: relative; top: 2px;' />
-					Close - Clear the enclosure of any running app</li>
+					<img class='icon' src='assets/browse.png' />
+					Menu - Toggle the enclosure settings bar</li>
+				<li>
+					<img class='icon' src='assets/beam-clear.png' />
+					Clear - Clear the enclosure of any running app</li>
 				<li>&#9664; Back - Go to the previous page</li>
 				<li>&#9654; Forward - Go to the next page</li>
 				<li>&#10226; Refresh - Reload the current page</li>
 				<li>&#128269; Search - Search Google for the entered text</li>
-				<li>&#10006; Clear - Clear the contents of the URL bar</li>
+				<li>&#10006; Clear URL - Clear the contents of the URL bar</li>
 				<li>&#127968; Home - Go to the default page for this enclosure</li>
 			</ul>
+			
+			
+			<h2>Personal Browser and Beaming</h2>
+			
+			<p>
+				In addition to enclosures in rooms, you also have a personal display
+				that only you can see. This display behaves just like every other
+				display, plus one important feature: beaming. If you click the Beam
+				(<img class='icon' src='assets/beam.png' />) icon, your current page will be
+				sent to one of the room's enclosures, whichever is most appropriate
+				for the content being beamed.
+			</p>
+			
 			
 			<h2>Available Apps</h2>
 			
