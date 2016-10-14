@@ -74,13 +74,13 @@
 			<h2>What is A-Frame?</h2>
 
 			<p>
-				A-Frame is a relatively easy way to build a 3d scene without
-				a lot of complicated coding. It's nearly as simple as adding
-				an object, then telling it where it should be in the space.
-				Take a look at the demo below:
+				A-Frame is a relatively easy way to build a 3d scene without a lot
+				of complicated coding. It's nearly as simple as adding an object,
+				then telling it where it should be in the space. Take a look at
+				the demo below:
 			</p>
 
-			<a-scene altspace='vertical-align: bottom;' embedded>
+			<a-scene embedded altspace='vertical-align: bottom;' >
 				<a-assets>
 					<img id='moon' src='assets/moon.jpg'/>
 					<img id='stars' src='assets/stars.png'/>
@@ -95,36 +95,123 @@
 			</a-scene>
 
 			<p>
-				This demo was constructed with a meer dozen lines of
-				pseudo-HTML (plus some boilerplate):
+				This demo was constructed with a mere dozen lines of pseudo-HTML
+				(plus some boilerplate):
 			</p>
 
 			<pre><code class='language-markup'><!--
 -->&lt;!DOCTYPE html&gt;
 &lt;html&gt;&lt;body&gt;
-&lt;script src="dist/aframe.min.js"&gt;&lt;/script&gt;
-&lt;script src="dist/aframe-altspace-component.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://aframe.io/releases/0.3.0/aframe.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.rawgit.com/AltspaceVR/aframe-altspace-component/v0.3.0/dist/aframe-altspace-component.min.js"&gt;&lt;/script&gt;
 
+&lt;!-- set up the scene --&gt;
 &lt;a-scene altspace='vertical-align: bottom;'&gt;
+
+	&lt;!-- preload all our textures --&gt;
 	&lt;a-assets&gt;
 		&lt;img id='moon' src='assets/moon.jpg'/&gt;
 		&lt;img id='stars' src='assets/stars.png'/&gt;
 	&lt;/a-assets&gt;
+	
+	&lt;!-- add the moon to the scene --&gt;
 	&lt;a-sphere position='0 1.5 0' material='shader: flat; src: #moon;'&gt;
+		&lt;!-- add an animation to make it rotate --&gt;
 		&lt;a-animation to='0 360 0' easing='linear' dur='20000' repeat='indefinite'/&gt;
 	&lt;/a-sphere&gt;
+	
+	&lt;!-- add the backdrop of stars --&gt;
 	&lt;a-sky src='#stars' radius='2500'&gt;&lt;/a-sky&gt;
+	
+	&lt;!-- add a view camera (2d only) --&gt;
 	&lt;a-entity position='0 0 2'&gt;
 		&lt;a-camera&gt;&lt;/a-camera&gt;
 	&lt;/a-entity&gt;
+	
 &lt;/a-scene&gt;
 
 &lt;/body&gt;&lt;/html&gt;<!--
 			--></code></pre>
 			
+			<p>
+				We'll dig into this in a bit, and understand it line by line, but
+				first, a word about the overall structure.
+			</p>
 			
-		</div>
+			<h2>Entity-Component-System Pattern</h2>
+			
+			<p>
+				From the <a href='https://aframe.io/docs/0.3.0/core/' target='_blank'>
+				A-Frame documentation</a>:
+			</p>
+			
+			<blockquote>
+				<p>
+					A-Frame is based on an entity-component-system pattern (ECS), a
+					pattern common in game development that emphasizes composability
+					over inheritance:
+				</p>
 
+				<ul>
+					<li>An entity is a general-purpose object that inherently does
+						and renders nothing.</li>
+					<li>A component is a reusable module that is plugged into entities
+						in order to provide appearance, behavior, and/or functionality.
+						They are plug-and-play for objects.</li>
+					<li>A system provides global scope, services, and management to
+						classes of components.</li>
+				</ul>
+				
+				<p>
+					ECS lets us build complex entities with rich behavior by plugging
+					different reusable components into the sockets on the entity.
+					Contrast this to traditional inheritance where if we want to extend
+					an object, we would have to manually create a new class to do so.
+				</p>
+			</blockquote>
+			
+			<p>
+				In this system, entities are represented as HTML tags, and components
+				are attributes on those tags. So in
+			</p>
+			
+			<pre><code class='language-markup'><!--
+				-->&lt;a-box position="0 0 0" color='red'/&gt;<!--
+			--></code></pre>
+			
+			<p>
+				<code>a-box</code> is the entity, and <code>position</code> and <code>
+				color</code> are components of that entity. Note that in this example,
+				<code>a-box</code> is a "primitive", which is a special case of <code>
+				a-entity</code>. In its full form, that primitive would look something
+				like this:
+			</p>
+			
+			<pre><code class='language-markup'><!--
+			-->&lt;a-entity geometry='primitive: box' material='color: red' position='0 0 0'/&gt;<!--
+			--></code></pre>
+			
+			<p>
+				There are lots of different primitives that do different things, but
+				in general they clean up and repackage some of the most commonly
+				included components on that entity. For the full list of primitives,
+				see the <a href='https://aframe.io/docs/0.3.0/primitives/'
+				target='_blank'>A-Frame documentation</a>.
+			</p>
+			
+			<h2>&lt;a-scene&gt;</h2>
+		
+			<p>
+				3d scenes are described as a hierarchy of entities, and like all
+				hierarchies, they go all the way to the top. <code>&lt;a-scene&gt;
+				</code> is this top-level entity for A-Frame apps. Here you
+				configure all the components of the scene. In our case, we add our
+				<code>altspace</code> component, which will pipe the scene to
+				Altspace instead of drawing in 2d.
+			</p>
+		
+		</div>
+		
 		<script src="lib/prism.js"></script>
 	</body>
 </html>
