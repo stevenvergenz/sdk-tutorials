@@ -77,31 +77,52 @@
 				A-Frame is a relatively easy way to build a 3d scene without
 				a lot of complicated coding. It's nearly as simple as adding
 				an object, then telling it where it should be in the space.
-				We'll dig through this example line-by-line in a moment, but
-				first, take a look at the demo below:
+				Take a look at the demo below:
 			</p>
 
 			<a-scene altspace='vertical-align: bottom;' embedded>
-				<a-sphere position='0 1.5 0' material='shader: flat; src: url(assets/moon.jpg);'>
+				<a-assets>
+					<img id='moon' src='assets/moon.jpg'/>
+					<img id='stars' src='assets/stars.png'/>
+				</a-assets>
+				<a-sphere position='0 1.5 0' material='shader: flat; src: #moon;'>
 					<a-animation to='0 360 0' easing='linear' dur='20000' repeat='indefinite'/>
 				</a-sphere>
+				<a-sky src='#stars' radius='2500'></a-sky>
 				<a-entity position='0 0 2'>
 					<a-camera></a-camera>
 				</a-entity>
 			</a-scene>
 
-			<p>This demo was constructed with only eight lines of pseudo-HTML:</p>
+			<p>
+				This demo was constructed with a meer dozen lines of
+				pseudo-HTML (plus some boilerplate):
+			</p>
 
 			<pre><code class='language-markup'><!--
--->&lt;a-scene altspace='vertical-align: bottom;' embedded&gt;
-	&lt;a-sphere position='0 1.5 0' material='shader: flat; src: url(assets/moon.jpg);'&gt;
+-->&lt;!DOCTYPE html&gt;
+&lt;html&gt;&lt;body&gt;
+&lt;script src="dist/aframe.min.js"&gt;&lt;/script&gt;
+&lt;script src="dist/aframe-altspace-component.min.js"&gt;&lt;/script&gt;
+
+&lt;a-scene altspace='vertical-align: bottom;'&gt;
+	&lt;a-assets&gt;
+		&lt;img id='moon' src='assets/moon.jpg'/&gt;
+		&lt;img id='stars' src='assets/stars.png'/&gt;
+	&lt;/a-assets&gt;
+	&lt;a-sphere position='0 1.5 0' material='shader: flat; src: #moon;'&gt;
 		&lt;a-animation to='0 360 0' easing='linear' dur='20000' repeat='indefinite'/&gt;
 	&lt;/a-sphere&gt;
+	&lt;a-sky src='#stars' radius='2500'&gt;&lt;/a-sky&gt;
 	&lt;a-entity position='0 0 2'&gt;
 		&lt;a-camera&gt;&lt;/a-camera&gt;
 	&lt;/a-entity&gt;
-&lt;/a-scene&gt;<!--
+&lt;/a-scene&gt;
+
+&lt;/body&gt;&lt;/html&gt;<!--
 			--></code></pre>
+			
+			
 		</div>
 
 		<script src="lib/prism.js"></script>
