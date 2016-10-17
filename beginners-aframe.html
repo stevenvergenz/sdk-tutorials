@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>How To Build Apps With A-Frame - AltspaceVR</title>
+		<title>Building AltspaceVR Apps With A-Frame</title>
 		<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
 		<script src="https://cdn.rawgit.com/AltspaceVR/aframe-altspace-component/v0.3.0/dist/aframe-altspace-component.min.js"></script>
 
@@ -52,25 +52,25 @@
 			<p>
 				When it comes to building something quick in Altspace, it's hard
 				to beat <a target='_blank' href='https://aframe.io/'>A-Frame</a>.
-				It has a simple HTML-based syntax, so anyone with even a passing
-				familiarity with web development will pick it up in no time. If
-				that's not you, you should go through MDN's terrific
+				It has a simple HTML-based syntax, so anyone acquainted with web
+				development will pick it up in no time. On the other hand, if you
+				don't know what an HTML tag is, or how to add an image to a page,
+				you should go through MDN's terrific
 				<a href='https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Introduction'
 					target='_blank'>Introduction to HTML</a> before you continue.
 			</p>
 
 			<p>
-				On the other hand, the world is full of web developers. If you're
-				one of these, and feel comfortable experimenting without this
-				tutorial holding your hand, you should jump right in with the
-				<a href='https://aframe.io/docs/0.3.0/introduction/' target='_blank'>
+				The world is full of web developers though, so if you feel
+				comfortable experimenting on your own, you should jump right in
+				with the <a href='https://aframe.io/docs/0.3.0/introduction/' target='_blank'>
 				A-Frame Documentation</a>. You just need to add the Altspace
 				component to your <code>&lt;a-scene&gt;</code> tag. Keep in mind
 				though that development in Altspace has a few
 				<a href='https://github.com/altspacevr/altspacesdk#threejs-feature-support'>
 				caveats</a>.
 			</p>
-
+			
 			<h2>What is A-Frame?</h2>
 
 			<p>
@@ -85,7 +85,7 @@
 					<img id='moon' src='assets/moon.jpg'/>
 					<img id='stars' src='assets/stars.png'/>
 				</a-assets>
-				<a-sphere position='0 1.5 0' material='shader: flat; src: #moon;'>
+				<a-sphere position='0 1.5 0' material='src: #moon;'>
 					<a-animation to='0 360 0' easing='linear' dur='20000' repeat='indefinite'/>
 				</a-sphere>
 				<a-sky src='#stars' radius='2500'></a-sky>
@@ -115,7 +115,7 @@
 	&lt;/a-assets&gt;
 	
 	&lt;!-- add the moon to the scene --&gt;
-	&lt;a-sphere position='0 1.5 0' material='shader: flat; src: #moon;'&gt;
+	&lt;a-sphere position='0 1.5 0' material='src: #moon;'&gt;
 		&lt;!-- add an animation to make it rotate --&gt;
 		&lt;a-animation to='0 360 0' easing='linear' dur='20000' repeat='indefinite'/&gt;
 	&lt;/a-sphere&gt;
@@ -136,6 +136,12 @@
 			<p>
 				We'll dig into this in a bit, and understand it line by line, but
 				first, a word about the overall structure.
+			</p>
+			
+			<h2>Hosting Your App</h2>
+			
+			<p>
+				
 			</p>
 			
 			<h2>Entity-Component-System Pattern</h2>
@@ -200,16 +206,88 @@
 			</p>
 			
 			<h2>&lt;a-scene&gt;</h2>
-		
+			
+			<pre><code class='language-markup'><!--
+-->&lt;a-scene altspace='vertical-align: bottom;'&gt;
+	...
+&lt;/a-scene&gt;<!--
+			--></code></pre>
+
 			<p>
-				3d scenes are described as a hierarchy of entities, and like all
-				hierarchies, they go all the way to the top. <code>&lt;a-scene&gt;
-				</code> is this top-level entity for A-Frame apps. Here you
-				configure all the components of the scene. In our case, we add our
-				<code>altspace</code> component, which will pipe the scene to
-				Altspace instead of drawing in 2d.
+				&lt;a-scene&gt; is the root entity of the scene, and required
+				by all A-Frame apps. To this we add our <code>altspace</code>
+				component, which will instruct A-Frame to send the scene to
+				Altspace instead of drawing in 2d. The component also instructs
+				Altspace to position our app relative to the floor instead of
+				relative to the center of the enclosure (<code>vertical-align:
+				bottom;</code>).
 			</p>
 		
+			<h2>&lt;a-assets&gt;</h2>
+			
+			<pre><code class='language-markup'><!--
+-->&lt;a-assets&gt;
+	&lt;img id='moon' src='assets/moon.jpg'/&gt;
+	&lt;img id='stars' src='assets/stars.png'/&gt;
+&lt;/a-assets&gt;<!--
+			--></code></pre>
+			
+			<p>
+				Most scenes are built from a collection of external models and images.
+				By loading those models/images in the <code>&lt;a-assets&gt;</code>
+				section, they are loaded synchronously, meaning that the scene won't
+				continue until the assets are finished loading, yielding a smoother
+				experience. Those assets are also cached, so you can use them multiple
+				times without having to load them again.
+			</p>
+			
+			<p>
+				To load individual assets, you'll need to use an <code>&lt;a-asset&gt;
+				</code>, <code>&lt;img&gt;</code>, or <code>&lt;video&gt;</code> tag
+				under the <code>&lt;a-assets&gt;</code> to load it. Make sure to give
+				each asset an identifier via the <code>id</code> attribute, so you can
+				reference it later. Check the <a href=
+				'https://aframe.io/docs/0.3.0/core/asset-management-system.html'>
+				A-Frame assets documentation</a> for details about your particular
+				model format. All put together, the assets section might look like
+				this:
+			</p>
+			
+		
+			
+			<h2>&lt;a-sphere&gt;</h2>
+			
+			<pre><code class='language-markup'><!--
+-->&lt;a-sphere position='0 1.5 0' material='src: #moon;'&gt;
+	...
+&lt;/a-sphere&gt;<!--
+			--></code></pre>
+			
+			<p>
+				This part is dead simple. The tag itself creates a sphere of the
+				default radius (1m), the <code>position</code> component triple
+				positions it at roughly eye-level (1.5m off the floor), and the
+				<code>material</code> component to describe what the sphere looks
+				like. In this case, we tell it to use the moon texture we loaded
+				in the assets section (the hashtag notation is commonly used to
+				refer to tag identifiers, i.e. the <code>id</code> attribute).
+			</p>
+			
+			<h2>&lt;a-animation&gt;</h2>
+			
+			<pre><code class='language-markup'><!--
+-->&lt;a-animation to='0 360 0' easing='linear' dur='20000' repeat='indefinite'/&gt;<!--
+			--></code></pre>
+
+			<p>
+				
+			</p>
+			
+			<h2>&lt;a-sky&gt;</h2>
+			
+			<p>
+				
+			</p>
 		</div>
 		
 		<script src="lib/prism.js"></script>
