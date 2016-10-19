@@ -150,7 +150,23 @@
 			<h2>Hosting Your App</h2>
 			
 			<p>
-				<em>To do: write this section</em>
+				Like all websites, Altspace apps require a publicly available
+				server to pass out copies of your code. For new developers, the
+				easiest way to get up and running quickly is to use a cloud-based
+				service like <a href='https://jsbin.com'>JSBin</a>. You can open
+				your code in the personal browser, and open the live preview in
+				the enclosure (via Share > Output only). This way you don't need
+				to set up your own server.
+			</p>
+			
+			<p>
+				Of course, JSBin will be cumbersome for an app of any significant
+				size, so you'll want to make your own arrangements for hosting
+				when your app starts coming together. One popular option is <a
+				href='https://pages.github.com/'>GitHub Pages</a>, where you
+				upload your files, and they host them as part of their suite
+				of tools. This is the recommended option for medium-sized projects.
+				Beyond that, you need to look at purchasing dedicated hosting.
 			</p>
 			
 			<h2>Entity-Component-System Pattern</h2>
@@ -223,13 +239,13 @@
 			--></code></pre>
 
 			<p>
-				&lt;a-scene&gt; is the root entity of the scene, and required
-				by all A-Frame apps. To this we add our <code>altspace</code>
-				component, which will instruct A-Frame to send the scene to
-				Altspace instead of drawing in 2d. The component also instructs
-				Altspace to position our app relative to the floor instead of
-				relative to the center of the enclosure (<code>vertical-align:
-				bottom;</code>).
+				<code>&lt;a-scene&gt;</code> is the root entity of the scene,
+				and required by all A-Frame apps. To this we add our <code
+				>altspace</code> component, which will instruct A-Frame to
+				send the scene to Altspace instead of drawing in 2d. The
+				component also instructs Altspace to position our app relative
+				to the floor instead of relative to the center of the enclosure
+				(<code>vertical-align: bottom;</code>).
 			</p>
 		
 			<h2>&lt;a-assets&gt;</h2>
@@ -273,7 +289,7 @@
 				This part is dead simple. The tag itself creates a sphere of the
 				default radius (1m), the <code>position</code> component triple
 				positions it at roughly eye-level (1.5m off the floor), and the
-				<code>material</code> component to describe what the sphere looks
+				<code>material</code> component describes what the sphere looks
 				like. In this case, we tell it to use the moon texture we loaded
 				in the assets section (the hashtag notation is commonly used to
 				refer to tag identifiers, i.e. the <code>id</code> attribute).
@@ -321,7 +337,9 @@
 			<p>
 				So that's it! You should now know how to set up your very own
 				simple Altspace app with A-Frame. Congratulations, you're a
-				developer!
+				developer! If you're looking for specific information, again,
+				look us up on <a href='https://altspacevrsdk.slack.com'>Slack</a>,
+				and we'll walk you through whatever difficulty you're having.
 			</p>
 		</div>
 		
